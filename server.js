@@ -4,13 +4,14 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv"
 import { createUser, allUsers, getUserById, updateUser, deleteUser} from "./routes/userRoute.js";
+import connectDB from "./config/db.js";
 
 const app = express();
 dotenv.config()
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/users");
+connectDB()
 
 app.post("/createUser", createUser);
 app.get("/", allUsers);
